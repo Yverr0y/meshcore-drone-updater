@@ -6,6 +6,8 @@ import argparse
 import logging
 import sys
 import time
+import platform
+
 
 # Update import to include the new find_any_device function
 from dfu_lib import NordicLegacyDFU, find_any_device, find_device_by_name_or_address, DfuException, DFU_SERVICE_UUID
@@ -42,6 +44,8 @@ async def main():
     parser.add_argument("--prn", type=int, default=8, help="PRN interval (default 8)")
     parser.add_argument("--delay", type=float, default=0.4, help="Start/Size Delay (default 0.4s)")
     parser.add_argument("--verbose", action="store_true", help="Enable verbose debug logs")
+    parser.add_argument("--high-mtu", action="store_true",
+                        help="Enable high-MTU negotiation for faster transfers (disabled by default).")
 
     # New Arguments
     parser.add_argument("--wait", action="store_true", help="Loop indefinitely until one of the target devices is found")
@@ -65,8 +69,15 @@ async def main():
     logging.getLogger("DFU_LIB").addHandler(handler) # Attach handler to lib logger
 
     try:
+        high_mtu = args.high_mtu
+        if platform.system() == "Darwin":
+            if high_mtu:
+                logger.warning("macOS detected: high-MTU is not supported and will be ignored.")
+            high_mtu = False
+
         # Pass None for log_callback so the library uses the standard logger configured above
-        dfu = NordicLegacyDFU(args.file, args.prn, args.delay, adapter=args.adapter, progress_callback=cli_progress_handler)
+        dfu = NordicLegacyDFU(args.file, args.prn, args.delay, adapter=args.adapter,
+                               high_mtu=high_mtu, progress_callback=cli_progress_handler)
         dfu.parse_zip()
 
         logger.info(f"Scanning for target(s): {args.device}...")
