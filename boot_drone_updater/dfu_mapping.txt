@@ -1,2 +1,10 @@
-4631_DFU /opt/firmware_downloader/MeshCore/repeater/latest/RAK_4631_repeater.zip
+RAK4631_OTA /opt/firmware_downloader/MeshCore/repeater/latest/RAK_4631_repeater.zip
 AdaDFU /opt/firmware_downloader/MeshCore/repeater/latest/RAK_4631_repeater.zip
+SENSECAP_SOLAR_OTA /opt/firmware_downloader/MeshCore/repeater/latest/SenseCap_Solar_repeater.zip
+T114_DFU /opt/firmware_downloader/MeshCore/repeater/latest/Heltec_t114_repeater.zip
+PROM_DFU /opt/firmware_downloader/MeshCore/repeater/latest/ProMicro_repeater.zip
+T1KE_DFU /opt/firmware_downloader/MeshCore/repeater/latest/t1000e_repeater.zip
+WTL1_DFU /opt/firmware_downloader/MeshCore/repeater/latest/WioTrackerL1_repeater.zip
+4631_DFU /opt/firmware_downloader/MeshCore/repeater/latest/RAK_4631_repeater.zip
+RTAG_DFU /opt/firmware_downloader/MeshCore/repeater/latest/RAK_WisMesh_Tag_repeater.zip
+XIAO_DFU /opt/firmware_downloader/MeshCore/repeater/latest/Xiao_nrf52_repeater.zip
